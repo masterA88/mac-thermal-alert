@@ -25,7 +25,12 @@ cd mac-thermal-alert
 ./install.sh
 ```
 
-The installer installs macmon with Homebrew if it is missing, copies the script to `~/.local/bin/thermal-alert.py`, and registers a LaunchAgent (`local.thermal-alert`) that runs every 60 seconds and starts again after each login.
+The installer sets up two free, open-source apps with Homebrew, skipping any that is already installed:
+
+- [macmon](https://github.com/vladkens/macmon), a command-line monitor that reads the chip's temperature sensors without sudo. The alert depends on it. Run `macmon` in Terminal for a live dashboard.
+- [Stats](https://github.com/exelban/stats), a menu-bar app that shows the temperature live. The alert does not need it, so it is there for you to glance at. To show the temperature in the menu bar, click the Stats icon, open Settings, then Sensors, and turn on CPU temperature.
+
+It then copies the script to `~/.local/bin/thermal-alert.py`, and registers a LaunchAgent (`local.thermal-alert`) that runs every 60 seconds and starts again after each login.
 
 Then check that alerts reach your screen:
 
@@ -65,7 +70,7 @@ Errors go to the same log, so a broken check does not fail silently.
 ./uninstall.sh
 ```
 
-This removes the LaunchAgent, the script and its state file. macmon and the log stay.
+This removes the LaunchAgent, the script and its state file. macmon, Stats and the log stay. To remove the two apps as well, run `brew uninstall macmon` and `brew uninstall --cask stats`.
 
 ## License
 

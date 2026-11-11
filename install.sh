@@ -21,6 +21,17 @@ if ! command -v macmon >/dev/null && [[ ! -x /opt/homebrew/bin/macmon && ! -x /u
   fi
 fi
 
+# Stats: free menu-bar app that shows the temperature live (https://github.com/exelban/stats)
+if [[ ! -d /Applications/Stats.app ]]; then
+  if command -v brew >/dev/null; then
+    echo "Installing the Stats menu-bar app with Homebrew..."
+    brew install --cask stats
+  else
+    echo "Skipping Stats (no Homebrew). Get it from https://github.com/exelban/stats if you want it."
+  fi
+fi
+[[ -d /Applications/Stats.app ]] && open /Applications/Stats.app || true
+
 mkdir -p "$HOME/.local/bin" "$HOME/Library/LaunchAgents" "$HOME/Library/Logs"
 install -m 755 "$HERE/thermal-alert.py" "$BIN"
 
