@@ -2,6 +2,8 @@
 
 A small background check for Apple Silicon Macs. Once a minute it reads the CPU, GPU and battery temperatures, and it warns you when they reach a level that can hurt the machine. A warning is a notification with a sound plus a dialog that stays on screen until you click OK.
 
+<p align="center"><img src="docs/alert.png" alt="The overheating alert dialog, here from the built-in test" width="372"></p>
+
 It needs no admin password and no app running in the menu bar. Temperatures come from [macmon](https://github.com/vladkens/macmon), which reads the chip's sensors without sudo. The battery temperature comes from `ioreg`.
 
 ## When it warns you
@@ -27,8 +29,13 @@ cd mac-thermal-alert
 
 The installer sets up two free, open-source apps with Homebrew, skipping any that is already installed:
 
-- [macmon](https://github.com/vladkens/macmon), a command-line monitor that reads the chip's temperature sensors without sudo. The alert depends on it. Run `macmon` in Terminal for a live dashboard.
-- [Stats](https://github.com/exelban/stats), a menu-bar app that shows the temperature live. The alert does not need it, so it is there for you to glance at. To show the temperature in the menu bar, click the Stats icon, open Settings, then Sensors, and turn on CPU temperature.
+- [macmon](https://github.com/vladkens/macmon), a command-line monitor that reads the chip's temperature sensors without sudo. The alert depends on it. Run `macmon` in Terminal for a live dashboard of usage, power and temperature:
+
+  <img src="docs/macmon.png" alt="macmon dashboard showing CPU at 59°C and GPU at 60°C" width="760">
+
+- [Stats](https://github.com/exelban/stats), a menu-bar app that shows the temperature live. The alert does not need it, so it is there for you to glance at. Clicking its CPU icon opens a panel with the CPU temperature at the top left. To show the temperature in the menu bar itself, click the Stats icon, open Settings, then Sensors, and turn on CPU temperature.
+
+  <img src="docs/stats.png" alt="Stats CPU panel showing 62°C" width="280">
 
 It then copies the script to `~/.local/bin/thermal-alert.py`, and registers a LaunchAgent (`local.thermal-alert`) that runs every 60 seconds and starts again after each login.
 
