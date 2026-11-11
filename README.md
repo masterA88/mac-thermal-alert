@@ -79,6 +79,10 @@ Errors go to the same log, so a broken check does not fail silently.
 
 This removes the LaunchAgent, the script and its state file. macmon, Stats and the log stay. To remove the two apps as well, run `brew uninstall macmon` and `brew uninstall --cask stats`.
 
+## Using an AI assistant
+
+If you hand this repo to Claude Code, Codex or a similar coding agent, it will find [AGENTS.md](AGENTS.md), which tells it how to install and check the alert and which steps need you to look at the screen.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
